@@ -1,6 +1,6 @@
 {
-  "name": "gulp-img64",
-  "version": "0.0.6",
+  "name": "gulp-img2base64",
+  "version": "0.0.1",
   "description": "Convert and replace image-files within your DOM/HTML to base64-encoded data.",
   "main": "index.js",
   "scripts": {
@@ -8,33 +8,43 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/247even/gulp-img64"
+    "url": "https://github.com/cntanglijun/gulp-img2base64.git"
   },
   "keywords": [
-    "gulpplugin", "endoding", "base64", "image", "html", "DOM"
+    "gulpplugin",
+    "endoding",
+    "base64",
+    "image",
+    "html",
+    "DOM"
   ],
   "author": {
     "name": "247even",
     "url": "https://github.com/247even"
   },
+  "maintainers": [
+    {
+      "name": "cntanglijun",
+      "email": "869058216@qq.com",
+      "web": "http://f2e-tlj.me"
+    }
+  ],
   "license": "MIT",
   "dependencies": {
-    "gulp-util": "~2.2.14",
-    "through2": "~0.4.1",
     "cheerio": "~0.13.1",
-    "mime": "~1.2.1"
+    "gulp-util": "~2.2.20",
+    "mime": "^1.2.11",
+    "through2": "~0.4.2"
   },
   "devDependencies": {
-    "mocha": "~1.17.1"
+    "mocha": "^2.4.5"
   },
   "engines": {
     "node": ">=0.10"
   },
   "readmeFilename": "README.md",
   "bugs": {
-    "url": "https://github.com/247even/gulp-img64/issues"
+    "url": "https://github.com/cntanglijun/gulp-img2base64/issues"
   },
-  "homepage": "https://github.com/247even/gulp-img64",
-  "_id": "gulp-img64@0.0.1",
-  "_from": "gulp-img64@"
+  "homepage": "https://github.com/cntanglijun/gulp-img2base64.git"
 }
