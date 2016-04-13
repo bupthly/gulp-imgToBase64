@@ -1,4 +1,6 @@
-# gulp-img64 [![Build Status](https://travis-ci.org/247even/gulp-img64.png)](https://travis-ci.org/247even/gulp-img64)
+# gulp-img64 
+
+[![Build Status](https://travis-ci.org/cntanglijun/gulp-img2base64.svg?branch=master)](https://travis-ci.org/cntanglijun/gulp-img2base64)
 
 Convert and replace image-files within your DOM/HTML to base64-encoded data.
 
