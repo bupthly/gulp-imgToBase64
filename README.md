@@ -1,4 +1,4 @@
-# gulp-img64 
+# gulp-img2base64
 
 [![Build Status](https://travis-ci.org/cntanglijun/gulp-img2base64.svg?branch=master)](https://travis-ci.org/cntanglijun/gulp-img2base64)
 
@@ -10,11 +10,11 @@ Convert and replace image-files within your DOM/HTML to base64-encoded data.
 
 ```js
 var gulp = require('gulp');
-var img64 = require('gulp-img64');
+var img2base64 = require('gulp-img2base64');
 
 gulp.task('default', function () {
 	gulp.src('index.html')
-		.pipe(img64())
+		.pipe(img2base64())
 		.pipe(gulp.dest('path'));
 });
 ```
@@ -47,4 +47,4 @@ gulp.task('default', function () {
 
 ### License
 
-MIT © 247even
+MIT
