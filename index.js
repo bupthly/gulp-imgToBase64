@@ -24,7 +24,6 @@ module.exports = function() {
 
 		if (file.isBuffer()) {
 			var $ = cheerio.load(String(file.contents), {
-				normalizeWhitespace: true,
 				xmlMode: true
 			});
 			$('image').each(function() {
@@ -32,7 +31,8 @@ module.exports = function() {
 					var ssrc = this.attr('src');
 					var isdata = ssrc.indexOf("data");
 					if (ssrc != "" && typeof ssrc != 'undefined' && isdata !== 0) {
-						var spath = path.join(path.dirname(file.path), ssrc);
+						const rootPath = path.join(path.dirname(file.path).split('src')[0], 'src');
+						var spath = path.join(rootPath, ssrc);
 						var mtype = mime.lookup(spath);
 						if (mtype != 'application/octet-stream') {
 							var sfile = fs.readFileSync(spath);
