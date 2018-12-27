@@ -23,8 +23,11 @@ module.exports = function() {
 		}
 
 		if (file.isBuffer()) {
-			var $ = cheerio.load(String(file.contents));
-			$('img').each(function() {
+			var $ = cheerio.load(String(file.contents), {
+				normalizeWhitespace: true,
+				xmlMode: true
+			});
+			$('image').each(function() {
 				if (this.attr('src')) {
 					var ssrc = this.attr('src');
 					var isdata = ssrc.indexOf("data");
