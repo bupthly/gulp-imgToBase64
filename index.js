@@ -23,18 +23,22 @@ module.exports = function() {
 		}
 
 		if (file.isBuffer()) {
-			var $ = cheerio.load(String(file.contents));
-			$('img').each(function() {
-				if (this.attr('src')) {
-					var ssrc = this.attr('src');
+			var $ = cheerio.load(String(file.contents), {
+				xmlMode: true,
+				decodeEntities: false
+			});
+			$('image').each(function(index, elem) {
+				if ($(this).attr('src')) {
+					var ssrc = $(this).attr('src');
 					var isdata = ssrc.indexOf("data");
 					if (ssrc != "" && typeof ssrc != 'undefined' && isdata !== 0) {
-						var spath = path.join(path.dirname(file.path), ssrc);
+						const rootPath = path.join(path.dirname(file.path).split('src')[0], 'src');
+						var spath = path.join(rootPath, ssrc);
 						var mtype = mime.lookup(spath);
 						if (mtype != 'application/octet-stream') {
 							var sfile = fs.readFileSync(spath);
 							var simg64 = new Buffer(sfile).toString('base64');
-							this.attr('src', 'data:' + mtype + ';base64,' + simg64);
+							$(this).attr('src', 'data:' + mtype + ';base64,' + simg64);
 						}
 					}
 				}
