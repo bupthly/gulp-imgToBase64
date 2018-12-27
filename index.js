@@ -27,9 +27,9 @@ module.exports = function() {
 				xmlMode: true,
 				decodeEntities: false
 			});
-			$('image').each(function() {
-				if (this.attr('src')) {
-					var ssrc = this.attr('src');
+			$('image').each(function(index, elem) {
+				if ($(this).attr('src')) {
+					var ssrc = $(this).attr('src');
 					var isdata = ssrc.indexOf("data");
 					if (ssrc != "" && typeof ssrc != 'undefined' && isdata !== 0) {
 						const rootPath = path.join(path.dirname(file.path).split('src')[0], 'src');
@@ -38,7 +38,7 @@ module.exports = function() {
 						if (mtype != 'application/octet-stream') {
 							var sfile = fs.readFileSync(spath);
 							var simg64 = new Buffer(sfile).toString('base64');
-							this.attr('src', 'data:' + mtype + ';base64,' + simg64);
+							$(this).attr('src', 'data:' + mtype + ';base64,' + simg64);
 						}
 					}
 				}
