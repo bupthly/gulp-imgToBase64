@@ -24,7 +24,8 @@ module.exports = function() {
 
 		if (file.isBuffer()) {
 			var $ = cheerio.load(String(file.contents), {
-				xmlMode: true
+				xmlMode: true,
+				decodeEntities: false
 			});
 			$('image').each(function() {
 				if (this.attr('src')) {
