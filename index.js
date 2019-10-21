@@ -4,9 +4,13 @@ var through = require('through2');
 var cheerio = require('cheerio');
 var fs = require('fs');
 var path = require('path');
+var chalk = require('chalk');
 var mime = require('mime');
 
-module.exports = function() {
+module.exports = function(opts) {
+	opts = JSON.parse(JSON.stringify(opts || {}));
+	opts.maxWeightResource = opts.maxWeightResource || 32768;
+
 	// create a stream through which each file will pass
 	return through.obj(function(file, enc, callback) {
 		if (file.isNull()) {
@@ -58,8 +62,12 @@ module.exports = function() {
 						var mtype = mime.lookup(spath);
 						if (mtype != 'application/octet-stream') {
 							var sfile = fs.readFileSync(spath);
-							var simg64 = new Buffer(sfile).toString('base64');
-							$(this).attr('src', 'data:' + mtype + ';base64,' + simg64);
+							if (sfile.length > opts.maxWeightResource) {
+								console.error(`ignore ${chalk.yellow(spath)}, file length is ${chalk.yellow(sfile.length)}, bigger than threshold ${chalk.yellow(opts.maxWeightResource)}.`);
+							} else {
+								var simg64 = new Buffer(sfile).toString('base64');
+								$(this).attr('src', 'data:' + mtype + ';base64,' + simg64);
+							}
 						}
 					}
 				}
