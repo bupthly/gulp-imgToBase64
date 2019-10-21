@@ -5,50 +5,21 @@ var fs       = require('fs');
 var path     = require('path');
 var mime	= require('mime');
 
-describe('gulp-img64', function() {
-	describe('in buffer mode', function() {
-
-		it('should replace images in DOM with base64 data', function(done) {
-
-			var filename = path.join(__dirname, '/fixtures/input.html');
-
-			var input = new gutil.File({
-				base: path.dirname(filename),
-				path: filename,
-				contents: new Buffer(fs.readFileSync(filename, 'utf8'))
-			});
-
-			var stream = img64();
-
-			stream.on('data', function(newFile) {
-				assert.equal(String(newFile.contents), fs.readFileSync(path.join(__dirname, '/fixtures/output.html'), 'utf8'));
-				done();
-			});
-
-			stream.write(input);
-
+describe('gulp-axml-base64image', function() {
+	it('should replace images in AXML with base64 data', function(done) {
+		var filename = path.join(__dirname, '/fixtures/demo/pages/demo/index.axml');
+		var input = new gutil.File({
+			base: path.dirname(filename),
+			path: filename,
+			contents: new Buffer(fs.readFileSync(filename, 'utf8'))
 		});
 
-    it('subdir', function(done) {
+		var stream = img64();
+		stream.on('data', function(newFile) {
+			assert.equal(String(newFile.contents), fs.readFileSync(path.join(__dirname, '/fixtures/output/pages/demo/index.axml'), 'utf8'));
+			done();
+		});
 
-      var filename = path.join(__dirname, '/fixtures/subdir/input.html');
-
-      var input = new gutil.File({
-        base: path.dirname(filename),
-        path: filename,
-        contents: new Buffer(fs.readFileSync(filename, 'utf8'))
-      });
-
-      var stream = img64();
-
-      stream.on('data', function(newFile) {
-        assert.equal(String(newFile.contents), fs.readFileSync(path.join(__dirname, '/fixtures/output.html'), 'utf8'));
-        done();
-      });
-
-      stream.write(input);
-
-    });
-
+		stream.write(input);
 	});
 });
