@@ -1,6 +1,6 @@
 {
   "name": "gulp-axml-base64image",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "转换支付宝小程序中的image为base64数据",
   "main": "index.js",
   "scripts": {
