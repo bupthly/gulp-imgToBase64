@@ -48,9 +48,9 @@ module.exports = function() {
 					var ssrc = $(this).attr('src');
 					var isdata = ssrc.indexOf("data");
 					if (ssrc != "" && typeof ssrc != 'undefined' && isdata !== 0) {
-						const rootPath = findTinyRootPath(path.dirname(file.path));
 						var spath = '';
 						if (path.isAbsolute(ssrc)) {
+							const rootPath = findTinyRootPath(path.dirname(file.path));
 							spath = path.join(rootPath, ssrc);
 						} else {
 							spath = path.join(path.dirname(file.path), ssrc);
